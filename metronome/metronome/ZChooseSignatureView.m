@@ -12,6 +12,8 @@
 @property (weak, nonatomic) IBOutlet UIPickerView *pickerView;
 @property (nonatomic , strong)NSArray * arrComponent;
 
+@property (nonatomic,copy) NSString * ztest;
+
 @end
 @implementation ZChooseSignatureView
 {
