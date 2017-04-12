@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="ZCustomNumberKeyboardView">
+            <rect key="frame" x="0.0" y="0.0" width="310" height="360"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HFg-7d-nLU">
+                    <rect key="frame" x="0.0" y="0.0" width="310" height="55"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IvT-KN-BZc">
+                            <rect key="frame" x="115" y="10" width="80" height="35"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AtX-FE-irP">
+                                    <rect key="frame" x="0.0" y="0.0" width="80" height="35"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="80" id="CJN-YF-n2d"/>
+                                <constraint firstAttribute="trailing" secondItem="AtX-FE-irP" secondAttribute="trailing" id="FLW-1d-UKg"/>
+                                <constraint firstItem="AtX-FE-irP" firstAttribute="top" secondItem="IvT-KN-BZc" secondAttribute="top" id="Syp-kO-Sgc"/>
+                                <constraint firstAttribute="height" constant="35" id="bx8-UZ-IZw"/>
+                                <constraint firstItem="AtX-FE-irP" firstAttribute="leading" secondItem="IvT-KN-BZc" secondAttribute="leading" id="jky-AS-n7o"/>
+                                <constraint firstAttribute="bottom" secondItem="AtX-FE-irP" secondAttribute="bottom" id="sCr-x7-1Z3"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstItem="IvT-KN-BZc" firstAttribute="centerY" secondItem="HFg-7d-nLU" secondAttribute="centerY" id="I0j-6T-eUY"/>
+                        <constraint firstItem="IvT-KN-BZc" firstAttribute="centerX" secondItem="HFg-7d-nLU" secondAttribute="centerX" id="Lft-m2-e29"/>
+                        <constraint firstAttribute="height" constant="55" id="PcR-bg-4ib"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dpz-CL-f7R">
+                    <rect key="frame" x="20" y="55" width="270" height="305"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="keyboardGrayBack" translatesAutoresizingMaskIntoConstraints="NO" id="1cM-u1-cyy">
+                            <rect key="frame" x="0.0" y="0.0" width="270" height="305"/>
+                        </imageView>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="73X-78-hHK">
+                            <rect key="frame" x="6" y="6" width="258" height="293"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </view>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="73X-78-hHK" secondAttribute="trailing" constant="6" id="5Me-Ra-zdg"/>
+                        <constraint firstAttribute="bottom" secondItem="73X-78-hHK" secondAttribute="bottom" constant="6" id="EHq-Ue-4Zg"/>
+                        <constraint firstAttribute="bottom" secondItem="1cM-u1-cyy" secondAttribute="bottom" id="NVJ-QO-5bB"/>
+                        <constraint firstItem="73X-78-hHK" firstAttribute="top" secondItem="Dpz-CL-f7R" secondAttribute="top" constant="6" id="Qiy-G2-bHN"/>
+                        <constraint firstItem="1cM-u1-cyy" firstAttribute="leading" secondItem="Dpz-CL-f7R" secondAttribute="leading" id="ZbJ-Pc-G6P"/>
+                        <constraint firstItem="1cM-u1-cyy" firstAttribute="top" secondItem="Dpz-CL-f7R" secondAttribute="top" id="j8i-Ho-HPc"/>
+                        <constraint firstItem="73X-78-hHK" firstAttribute="leading" secondItem="Dpz-CL-f7R" secondAttribute="leading" constant="6" id="oHg-bf-4O3"/>
+                        <constraint firstAttribute="trailing" secondItem="1cM-u1-cyy" secondAttribute="trailing" id="x6X-zp-PVu"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="Dpz-CL-f7R" secondAttribute="bottom" id="3QO-ko-Dmq"/>
+                <constraint firstAttribute="trailing" secondItem="HFg-7d-nLU" secondAttribute="trailing" id="P6q-8m-hXu"/>
+                <constraint firstItem="Dpz-CL-f7R" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="PEx-t4-sO9"/>
+                <constraint firstItem="HFg-7d-nLU" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="RwO-Aw-ZGc"/>
+                <constraint firstItem="Dpz-CL-f7R" firstAttribute="top" secondItem="HFg-7d-nLU" secondAttribute="bottom" id="cn6-L0-cgt"/>
+                <constraint firstItem="HFg-7d-nLU" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="fTk-Ll-QYq"/>
+                <constraint firstAttribute="trailing" secondItem="Dpz-CL-f7R" secondAttribute="trailing" constant="20" id="gl6-BN-f9D"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="backView" destination="HFg-7d-nLU" id="wmg-Xy-Rev"/>
+                <outlet property="downView" destination="73X-78-hHK" id="Pzj-8u-lTm"/>
+                <outlet property="shaImage" destination="1cM-u1-cyy" id="XJN-Th-ZhU"/>
+                <outlet property="shaView" destination="Dpz-CL-f7R" id="vhc-BE-byA"/>
+                <outlet property="topLab" destination="AtX-FE-irP" id="NUD-5H-F3X"/>
+                <outlet property="topView" destination="IvT-KN-BZc" id="MZO-Lr-bZO"/>
+            </connections>
+            <point key="canvasLocation" x="31" y="-345"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="keyboardGrayBack" width="267" height="284"/>
+    </resources>
+</document>

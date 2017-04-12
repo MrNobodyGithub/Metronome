@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="ZChooseSignatureView">
+            <rect key="frame" x="0.0" y="0.0" width="387" height="245"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1TH-l6-rPw">
+                    <rect key="frame" x="0.0" y="0.0" width="387" height="245"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="signatureBack" translatesAutoresizingMaskIntoConstraints="NO" id="UcP-Sa-srN">
+                            <rect key="frame" x="30" y="0.0" width="327" height="245"/>
+                        </imageView>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nWc-ej-lbX">
+                            <rect key="frame" x="93" y="55" width="200" height="135"/>
+                            <subviews>
+                                <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WPV-oz-2vd">
+                                    <rect key="frame" x="0.0" y="0.0" width="200" height="135"/>
+                                    <connections>
+                                        <outlet property="dataSource" destination="-1" id="Ztg-Sh-xt5"/>
+                                        <outlet property="delegate" destination="-1" id="UzT-KS-twT"/>
+                                    </connections>
+                                </pickerView>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="bottom" secondItem="WPV-oz-2vd" secondAttribute="bottom" id="GO5-2V-9Lo"/>
+                                <constraint firstItem="WPV-oz-2vd" firstAttribute="top" secondItem="nWc-ej-lbX" secondAttribute="top" id="Zgu-Ad-AOH"/>
+                                <constraint firstAttribute="width" constant="200" id="gwT-nX-kad"/>
+                                <constraint firstAttribute="height" constant="135" id="mi2-vP-dJd"/>
+                                <constraint firstAttribute="trailing" secondItem="WPV-oz-2vd" secondAttribute="trailing" id="o24-l1-m8j"/>
+                                <constraint firstItem="WPV-oz-2vd" firstAttribute="leading" secondItem="nWc-ej-lbX" secondAttribute="leading" id="pGw-gF-lts"/>
+                            </constraints>
+                        </view>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uD7-Rw-RMl">
+                            <rect key="frame" x="159" y="8" width="68" height="22"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="22" id="cPc-29-Zsx"/>
+                                <constraint firstAttribute="width" constant="68" id="jjH-gg-owb"/>
+                            </constraints>
+                            <state key="normal" title=" " image="arrowDownGray" backgroundImage=" "/>
+                            <connections>
+                                <action selector="btnActionArrowDown:forEvent:" destination="iN0-l3-epB" eventType="touchUpInside" id="LZb-7o-avB"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="UcP-Sa-srN" secondAttribute="bottom" id="16F-pd-FXa"/>
+                        <constraint firstItem="nWc-ej-lbX" firstAttribute="centerY" secondItem="1TH-l6-rPw" secondAttribute="centerY" id="8dP-ej-vil"/>
+                        <constraint firstItem="UcP-Sa-srN" firstAttribute="leading" secondItem="1TH-l6-rPw" secondAttribute="leading" constant="30" id="Hgw-Et-aHw"/>
+                        <constraint firstAttribute="trailing" secondItem="UcP-Sa-srN" secondAttribute="trailing" constant="30" id="Q0M-oM-xsM"/>
+                        <constraint firstItem="UcP-Sa-srN" firstAttribute="top" secondItem="1TH-l6-rPw" secondAttribute="top" id="QgU-ca-mD8"/>
+                        <constraint firstItem="uD7-Rw-RMl" firstAttribute="centerX" secondItem="1TH-l6-rPw" secondAttribute="centerX" id="XGr-aJ-zR9"/>
+                        <constraint firstItem="uD7-Rw-RMl" firstAttribute="top" secondItem="1TH-l6-rPw" secondAttribute="top" constant="8" id="oAn-sU-Fww"/>
+                        <constraint firstItem="nWc-ej-lbX" firstAttribute="centerX" secondItem="1TH-l6-rPw" secondAttribute="centerX" id="uXs-ar-eJt"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="1TH-l6-rPw" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="EjT-Vp-fTX"/>
+                <constraint firstAttribute="trailing" secondItem="1TH-l6-rPw" secondAttribute="trailing" id="WHI-Rf-Pqd"/>
+                <constraint firstAttribute="bottom" secondItem="1TH-l6-rPw" secondAttribute="bottom" id="dGx-Kf-dVS"/>
+                <constraint firstItem="1TH-l6-rPw" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="tR5-ZN-mYn"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="imageBack" destination="UcP-Sa-srN" id="LSd-KN-69X"/>
+                <outlet property="pickerView" destination="WPV-oz-2vd" id="yVQ-gm-RLs"/>
+            </connections>
+            <point key="canvasLocation" x="64.5" y="-52.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name=" " width="16" height="16"/>
+        <image name="arrowDownGray" width="31" height="16"/>
+        <image name="signatureBack" width="327" height="320"/>
+    </resources>
+</document>

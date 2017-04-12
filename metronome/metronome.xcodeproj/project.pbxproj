@@ -1,0 +1,523 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		466F8A321E9DE9D100F0963D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 466F8A311E9DE9D100F0963D /* main.m */; };
+		466F8A351E9DE9D100F0963D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 466F8A341E9DE9D100F0963D /* AppDelegate.m */; };
+		466F8A381E9DE9D100F0963D /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 466F8A371E9DE9D100F0963D /* ViewController.m */; };
+		466F8A3B1E9DE9D100F0963D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 466F8A391E9DE9D100F0963D /* Main.storyboard */; };
+		466F8A3D1E9DE9D100F0963D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 466F8A3C1E9DE9D100F0963D /* Assets.xcassets */; };
+		466F8A401E9DE9D100F0963D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 466F8A3E1E9DE9D100F0963D /* LaunchScreen.storyboard */; };
+		466F8A4B1E9DE9D100F0963D /* metronomeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 466F8A4A1E9DE9D100F0963D /* metronomeTests.m */; };
+		466F8A581E9DEA0400F0963D /* ZStepperViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 466F8A551E9DEA0400F0963D /* ZStepperViewController.m */; };
+		466F8A591E9DEA0400F0963D /* ZStepperViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 466F8A561E9DEA0400F0963D /* ZStepperViewController.xib */; };
+		466F8A801E9DEC4700F0963D /* ZNewSteperView.m in Sources */ = {isa = PBXBuildFile; fileRef = 466F8A7F1E9DEC4700F0963D /* ZNewSteperView.m */; };
+		466F8A871E9DEC7100F0963D /* ZChooseSignatureView.m in Sources */ = {isa = PBXBuildFile; fileRef = 466F8A821E9DEC7100F0963D /* ZChooseSignatureView.m */; };
+		466F8A881E9DEC7100F0963D /* ZChooseSignatureView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 466F8A831E9DEC7100F0963D /* ZChooseSignatureView.xib */; };
+		466F8A891E9DEC7100F0963D /* ZCustomNumberKeyboardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 466F8A851E9DEC7100F0963D /* ZCustomNumberKeyboardView.m */; };
+		466F8A8A1E9DEC7100F0963D /* ZCustomNumberKeyboardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 466F8A861E9DEC7100F0963D /* ZCustomNumberKeyboardView.xib */; };
+		466F8A991E9DEE2D00F0963D /* 电子弱拍.wav in Resources */ = {isa = PBXBuildFile; fileRef = 466F8A8B1E9DEE2D00F0963D /* 电子弱拍.wav */; };
+		466F8A9A1E9DEE2D00F0963D /* 电子重拍.wav in Resources */ = {isa = PBXBuildFile; fileRef = 466F8A8C1E9DEE2D00F0963D /* 电子重拍.wav */; };
+		466F8A9B1E9DEE2D00F0963D /* 鼓弱拍.wav in Resources */ = {isa = PBXBuildFile; fileRef = 466F8A8D1E9DEE2D00F0963D /* 鼓弱拍.wav */; };
+		466F8A9C1E9DEE2D00F0963D /* 鼓重拍.wav in Resources */ = {isa = PBXBuildFile; fileRef = 466F8A8E1E9DEE2D00F0963D /* 鼓重拍.wav */; };
+		466F8A9D1E9DEE2D00F0963D /* 节拍器001.wav in Resources */ = {isa = PBXBuildFile; fileRef = 466F8A8F1E9DEE2D00F0963D /* 节拍器001.wav */; };
+		466F8A9E1E9DEE2D00F0963D /* 节拍器002.wav in Resources */ = {isa = PBXBuildFile; fileRef = 466F8A901E9DEE2D00F0963D /* 节拍器002.wav */; };
+		466F8A9F1E9DEE2D00F0963D /* 节拍器错误.wav in Resources */ = {isa = PBXBuildFile; fileRef = 466F8A911E9DEE2D00F0963D /* 节拍器错误.wav */; };
+		466F8AA01E9DEE2D00F0963D /* 节拍器弱拍.wav in Resources */ = {isa = PBXBuildFile; fileRef = 466F8A921E9DEE2D00F0963D /* 节拍器弱拍.wav */; };
+		466F8AA11E9DEE2D00F0963D /* 节拍器旋钮音效.wav in Resources */ = {isa = PBXBuildFile; fileRef = 466F8A931E9DEE2D00F0963D /* 节拍器旋钮音效.wav */; };
+		466F8AA21E9DEE2D00F0963D /* 节拍器重拍.wav in Resources */ = {isa = PBXBuildFile; fileRef = 466F8A941E9DEE2D00F0963D /* 节拍器重拍.wav */; };
+		466F8AA31E9DEE2D00F0963D /* 木鱼弱拍.wav in Resources */ = {isa = PBXBuildFile; fileRef = 466F8A951E9DEE2D00F0963D /* 木鱼弱拍.wav */; };
+		466F8AA41E9DEE2D00F0963D /* 木鱼重拍.wav in Resources */ = {isa = PBXBuildFile; fileRef = 466F8A961E9DEE2D00F0963D /* 木鱼重拍.wav */; };
+		466F8AA51E9DEE2D00F0963D /* 强.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 466F8A971E9DEE2D00F0963D /* 强.mp3 */; };
+		466F8AA61E9DEE2D00F0963D /* 弱.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 466F8A981E9DEE2D00F0963D /* 弱.mp3 */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		466F8A471E9DE9D100F0963D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 466F8A251E9DE9D100F0963D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 466F8A2C1E9DE9D100F0963D;
+			remoteInfo = metronome;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		466F8A2D1E9DE9D100F0963D /* metronome.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = metronome.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		466F8A311E9DE9D100F0963D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		466F8A331E9DE9D100F0963D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		466F8A341E9DE9D100F0963D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		466F8A361E9DE9D100F0963D /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		466F8A371E9DE9D100F0963D /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		466F8A3A1E9DE9D100F0963D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		466F8A3C1E9DE9D100F0963D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		466F8A3F1E9DE9D100F0963D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		466F8A411E9DE9D100F0963D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		466F8A461E9DE9D100F0963D /* metronomeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = metronomeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		466F8A4A1E9DE9D100F0963D /* metronomeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = metronomeTests.m; sourceTree = "<group>"; };
+		466F8A4C1E9DE9D100F0963D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		466F8A551E9DEA0400F0963D /* ZStepperViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZStepperViewController.m; sourceTree = "<group>"; };
+		466F8A561E9DEA0400F0963D /* ZStepperViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZStepperViewController.xib; sourceTree = "<group>"; };
+		466F8A571E9DEA0400F0963D /* ZStepperViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZStepperViewController.h; sourceTree = "<group>"; };
+		466F8A7E1E9DEC4700F0963D /* ZNewSteperView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZNewSteperView.h; sourceTree = "<group>"; };
+		466F8A7F1E9DEC4700F0963D /* ZNewSteperView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZNewSteperView.m; sourceTree = "<group>"; };
+		466F8A811E9DEC7100F0963D /* ZChooseSignatureView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZChooseSignatureView.h; sourceTree = "<group>"; };
+		466F8A821E9DEC7100F0963D /* ZChooseSignatureView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZChooseSignatureView.m; sourceTree = "<group>"; };
+		466F8A831E9DEC7100F0963D /* ZChooseSignatureView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZChooseSignatureView.xib; sourceTree = "<group>"; };
+		466F8A841E9DEC7100F0963D /* ZCustomNumberKeyboardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZCustomNumberKeyboardView.h; sourceTree = "<group>"; };
+		466F8A851E9DEC7100F0963D /* ZCustomNumberKeyboardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZCustomNumberKeyboardView.m; sourceTree = "<group>"; };
+		466F8A861E9DEC7100F0963D /* ZCustomNumberKeyboardView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZCustomNumberKeyboardView.xib; sourceTree = "<group>"; };
+		466F8A8B1E9DEE2D00F0963D /* 电子弱拍.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "电子弱拍.wav"; sourceTree = "<group>"; };
+		466F8A8C1E9DEE2D00F0963D /* 电子重拍.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "电子重拍.wav"; sourceTree = "<group>"; };
+		466F8A8D1E9DEE2D00F0963D /* 鼓弱拍.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "鼓弱拍.wav"; sourceTree = "<group>"; };
+		466F8A8E1E9DEE2D00F0963D /* 鼓重拍.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "鼓重拍.wav"; sourceTree = "<group>"; };
+		466F8A8F1E9DEE2D00F0963D /* 节拍器001.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "节拍器001.wav"; sourceTree = "<group>"; };
+		466F8A901E9DEE2D00F0963D /* 节拍器002.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "节拍器002.wav"; sourceTree = "<group>"; };
+		466F8A911E9DEE2D00F0963D /* 节拍器错误.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "节拍器错误.wav"; sourceTree = "<group>"; };
+		466F8A921E9DEE2D00F0963D /* 节拍器弱拍.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "节拍器弱拍.wav"; sourceTree = "<group>"; };
+		466F8A931E9DEE2D00F0963D /* 节拍器旋钮音效.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "节拍器旋钮音效.wav"; sourceTree = "<group>"; };
+		466F8A941E9DEE2D00F0963D /* 节拍器重拍.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "节拍器重拍.wav"; sourceTree = "<group>"; };
+		466F8A951E9DEE2D00F0963D /* 木鱼弱拍.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "木鱼弱拍.wav"; sourceTree = "<group>"; };
+		466F8A961E9DEE2D00F0963D /* 木鱼重拍.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "木鱼重拍.wav"; sourceTree = "<group>"; };
+		466F8A971E9DEE2D00F0963D /* 强.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "强.mp3"; sourceTree = "<group>"; };
+		466F8A981E9DEE2D00F0963D /* 弱.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "弱.mp3"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		466F8A2A1E9DE9D100F0963D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		466F8A431E9DE9D100F0963D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		466F8A241E9DE9D100F0963D = {
+			isa = PBXGroup;
+			children = (
+				466F8A2F1E9DE9D100F0963D /* metronome */,
+				466F8A491E9DE9D100F0963D /* metronomeTests */,
+				466F8A2E1E9DE9D100F0963D /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		466F8A2E1E9DE9D100F0963D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				466F8A2D1E9DE9D100F0963D /* metronome.app */,
+				466F8A461E9DE9D100F0963D /* metronomeTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		466F8A2F1E9DE9D100F0963D /* metronome */ = {
+			isa = PBXGroup;
+			children = (
+				466F8A811E9DEC7100F0963D /* ZChooseSignatureView.h */,
+				466F8A821E9DEC7100F0963D /* ZChooseSignatureView.m */,
+				466F8A831E9DEC7100F0963D /* ZChooseSignatureView.xib */,
+				466F8A841E9DEC7100F0963D /* ZCustomNumberKeyboardView.h */,
+				466F8A851E9DEC7100F0963D /* ZCustomNumberKeyboardView.m */,
+				466F8A861E9DEC7100F0963D /* ZCustomNumberKeyboardView.xib */,
+				466F8A7E1E9DEC4700F0963D /* ZNewSteperView.h */,
+				466F8A7F1E9DEC4700F0963D /* ZNewSteperView.m */,
+				466F8A331E9DE9D100F0963D /* AppDelegate.h */,
+				466F8A341E9DE9D100F0963D /* AppDelegate.m */,
+				466F8A361E9DE9D100F0963D /* ViewController.h */,
+				466F8A371E9DE9D100F0963D /* ViewController.m */,
+				466F8A551E9DEA0400F0963D /* ZStepperViewController.m */,
+				466F8A561E9DEA0400F0963D /* ZStepperViewController.xib */,
+				466F8A571E9DEA0400F0963D /* ZStepperViewController.h */,
+				466F8A391E9DE9D100F0963D /* Main.storyboard */,
+				466F8A3C1E9DE9D100F0963D /* Assets.xcassets */,
+				466F8A3E1E9DE9D100F0963D /* LaunchScreen.storyboard */,
+				466F8A411E9DE9D100F0963D /* Info.plist */,
+				466F8A301E9DE9D100F0963D /* Supporting Files */,
+			);
+			path = metronome;
+			sourceTree = "<group>";
+		};
+		466F8A301E9DE9D100F0963D /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				466F8A8B1E9DEE2D00F0963D /* 电子弱拍.wav */,
+				466F8A8C1E9DEE2D00F0963D /* 电子重拍.wav */,
+				466F8A8D1E9DEE2D00F0963D /* 鼓弱拍.wav */,
+				466F8A8E1E9DEE2D00F0963D /* 鼓重拍.wav */,
+				466F8A8F1E9DEE2D00F0963D /* 节拍器001.wav */,
+				466F8A901E9DEE2D00F0963D /* 节拍器002.wav */,
+				466F8A911E9DEE2D00F0963D /* 节拍器错误.wav */,
+				466F8A921E9DEE2D00F0963D /* 节拍器弱拍.wav */,
+				466F8A931E9DEE2D00F0963D /* 节拍器旋钮音效.wav */,
+				466F8A941E9DEE2D00F0963D /* 节拍器重拍.wav */,
+				466F8A951E9DEE2D00F0963D /* 木鱼弱拍.wav */,
+				466F8A961E9DEE2D00F0963D /* 木鱼重拍.wav */,
+				466F8A971E9DEE2D00F0963D /* 强.mp3 */,
+				466F8A981E9DEE2D00F0963D /* 弱.mp3 */,
+				466F8A311E9DE9D100F0963D /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		466F8A491E9DE9D100F0963D /* metronomeTests */ = {
+			isa = PBXGroup;
+			children = (
+				466F8A4A1E9DE9D100F0963D /* metronomeTests.m */,
+				466F8A4C1E9DE9D100F0963D /* Info.plist */,
+			);
+			path = metronomeTests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		466F8A2C1E9DE9D100F0963D /* metronome */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 466F8A4F1E9DE9D100F0963D /* Build configuration list for PBXNativeTarget "metronome" */;
+			buildPhases = (
+				466F8A291E9DE9D100F0963D /* Sources */,
+				466F8A2A1E9DE9D100F0963D /* Frameworks */,
+				466F8A2B1E9DE9D100F0963D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = metronome;
+			productName = metronome;
+			productReference = 466F8A2D1E9DE9D100F0963D /* metronome.app */;
+			productType = "com.apple.product-type.application";
+		};
+		466F8A451E9DE9D100F0963D /* metronomeTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 466F8A521E9DE9D100F0963D /* Build configuration list for PBXNativeTarget "metronomeTests" */;
+			buildPhases = (
+				466F8A421E9DE9D100F0963D /* Sources */,
+				466F8A431E9DE9D100F0963D /* Frameworks */,
+				466F8A441E9DE9D100F0963D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				466F8A481E9DE9D100F0963D /* PBXTargetDependency */,
+			);
+			name = metronomeTests;
+			productName = metronomeTests;
+			productReference = 466F8A461E9DE9D100F0963D /* metronomeTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		466F8A251E9DE9D100F0963D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0830;
+				ORGANIZATIONNAME = zlz;
+				TargetAttributes = {
+					466F8A2C1E9DE9D100F0963D = {
+						CreatedOnToolsVersion = 8.3.1;
+						ProvisioningStyle = Automatic;
+					};
+					466F8A451E9DE9D100F0963D = {
+						CreatedOnToolsVersion = 8.3.1;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 466F8A2C1E9DE9D100F0963D;
+					};
+				};
+			};
+			buildConfigurationList = 466F8A281E9DE9D100F0963D /* Build configuration list for PBXProject "metronome" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 466F8A241E9DE9D100F0963D;
+			productRefGroup = 466F8A2E1E9DE9D100F0963D /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				466F8A2C1E9DE9D100F0963D /* metronome */,
+				466F8A451E9DE9D100F0963D /* metronomeTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		466F8A2B1E9DE9D100F0963D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				466F8A9B1E9DEE2D00F0963D /* 鼓弱拍.wav in Resources */,
+				466F8A401E9DE9D100F0963D /* LaunchScreen.storyboard in Resources */,
+				466F8A3D1E9DE9D100F0963D /* Assets.xcassets in Resources */,
+				466F8A8A1E9DEC7100F0963D /* ZCustomNumberKeyboardView.xib in Resources */,
+				466F8AA31E9DEE2D00F0963D /* 木鱼弱拍.wav in Resources */,
+				466F8A9D1E9DEE2D00F0963D /* 节拍器001.wav in Resources */,
+				466F8A9F1E9DEE2D00F0963D /* 节拍器错误.wav in Resources */,
+				466F8AA51E9DEE2D00F0963D /* 强.mp3 in Resources */,
+				466F8AA61E9DEE2D00F0963D /* 弱.mp3 in Resources */,
+				466F8AA21E9DEE2D00F0963D /* 节拍器重拍.wav in Resources */,
+				466F8AA01E9DEE2D00F0963D /* 节拍器弱拍.wav in Resources */,
+				466F8A9C1E9DEE2D00F0963D /* 鼓重拍.wav in Resources */,
+				466F8AA41E9DEE2D00F0963D /* 木鱼重拍.wav in Resources */,
+				466F8A9A1E9DEE2D00F0963D /* 电子重拍.wav in Resources */,
+				466F8A9E1E9DEE2D00F0963D /* 节拍器002.wav in Resources */,
+				466F8A3B1E9DE9D100F0963D /* Main.storyboard in Resources */,
+				466F8A591E9DEA0400F0963D /* ZStepperViewController.xib in Resources */,
+				466F8A881E9DEC7100F0963D /* ZChooseSignatureView.xib in Resources */,
+				466F8AA11E9DEE2D00F0963D /* 节拍器旋钮音效.wav in Resources */,
+				466F8A991E9DEE2D00F0963D /* 电子弱拍.wav in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		466F8A441E9DE9D100F0963D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		466F8A291E9DE9D100F0963D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				466F8A381E9DE9D100F0963D /* ViewController.m in Sources */,
+				466F8A891E9DEC7100F0963D /* ZCustomNumberKeyboardView.m in Sources */,
+				466F8A871E9DEC7100F0963D /* ZChooseSignatureView.m in Sources */,
+				466F8A351E9DE9D100F0963D /* AppDelegate.m in Sources */,
+				466F8A321E9DE9D100F0963D /* main.m in Sources */,
+				466F8A581E9DEA0400F0963D /* ZStepperViewController.m in Sources */,
+				466F8A801E9DEC4700F0963D /* ZNewSteperView.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		466F8A421E9DE9D100F0963D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				466F8A4B1E9DE9D100F0963D /* metronomeTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		466F8A481E9DE9D100F0963D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 466F8A2C1E9DE9D100F0963D /* metronome */;
+			targetProxy = 466F8A471E9DE9D100F0963D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		466F8A391E9DE9D100F0963D /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				466F8A3A1E9DE9D100F0963D /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		466F8A3E1E9DE9D100F0963D /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				466F8A3F1E9DE9D100F0963D /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		466F8A4D1E9DE9D100F0963D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		466F8A4E1E9DE9D100F0963D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		466F8A501E9DE9D100F0963D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = metronome/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = organizationId.metronome;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		466F8A511E9DE9D100F0963D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = metronome/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = organizationId.metronome;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		466F8A531E9DE9D100F0963D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = metronomeTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = organizationId.metronomeTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/metronome.app/metronome";
+			};
+			name = Debug;
+		};
+		466F8A541E9DE9D100F0963D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = metronomeTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = organizationId.metronomeTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/metronome.app/metronome";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		466F8A281E9DE9D100F0963D /* Build configuration list for PBXProject "metronome" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				466F8A4D1E9DE9D100F0963D /* Debug */,
+				466F8A4E1E9DE9D100F0963D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		466F8A4F1E9DE9D100F0963D /* Build configuration list for PBXNativeTarget "metronome" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				466F8A501E9DE9D100F0963D /* Debug */,
+				466F8A511E9DE9D100F0963D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		466F8A521E9DE9D100F0963D /* Build configuration list for PBXNativeTarget "metronomeTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				466F8A531E9DE9D100F0963D /* Debug */,
+				466F8A541E9DE9D100F0963D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 466F8A251E9DE9D100F0963D /* Project object */;
+}
