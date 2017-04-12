@@ -7,9 +7,11 @@ download and try ,it's fun.
 :+1:
 :sparkles:
 
-![image](https://github.com/MrNobodyGithub/newRep/tree/master/metronome/SceenShots/pic1.png)
+![image](https://github.com/MrNobodyGithub/RepOne/blob/master/metronome/SceenShots/pic1.png)
 
-![image](https://github.com/MrNobodyGithub/newRep/tree/master/metronome/SceenShots/pic2.png)
+
+
+![image](https://github.com/MrNobodyGithub/RepOne/blob/master/metronome/SceenShots/pic2.png)
 
 ![image](https://github.com/MrNobodyGithub/newRep/tree/master/metronome/SceenShots/pic3.png)
 
