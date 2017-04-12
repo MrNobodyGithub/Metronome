@@ -3,4 +3,5 @@ Metronome  -Learning music necessary tools
 download and try ,it's fun.
 
 
-![image](https://github.com/MrNobodyGithub/newRes/master/readme/pic1.png)
+![image](https://github.com/MrNobodyGithub/newRep/master/readme/pic1.png)
+
