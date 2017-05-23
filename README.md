@@ -1,4 +1,4 @@
-# RepOne
+# Metronome
 Metronome  -Learning music necessary tools
 
 
