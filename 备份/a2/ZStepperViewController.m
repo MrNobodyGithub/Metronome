@@ -74,7 +74,7 @@ typedef NS_ENUM(NSInteger , toneProperty) {
 @property (assign ,nonatomic) toneProperty tonePro;
 
 @property (weak ,nonatomic) ZNewSteperView * stepperView;
-
+@property (strong, nonatomic) CADisplayLink *displayLink;
 @property (strong, nonatomic) NSTimer *timer;
 @property (nonatomic, strong) AVAudioPlayer *audioPlayer;
 
@@ -111,7 +111,8 @@ static double preRadian;
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:YES];
     self.navigationController.navigationBar.hidden = NO;
-    [self kInvalidate];
+     [self.displayLink invalidate];
+    self.displayLink = nil;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -158,6 +159,12 @@ static double preRadian;
     [_btnImageWheel setBackgroundImage:[UIImage imageNamed:@"wheel"] forState:UIControlStateHighlighted];
     [_btnImageHand setBackgroundImage:[UIImage imageNamed:@"hand_out"] forState:UIControlStateNormal];
     [_btnImageHand setBackgroundImage:[UIImage imageNamed:@"hand_in"] forState:UIControlStateHighlighted];
+    //CADisplaylink
+//    self.displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(updateStep)];
+////    [self.displayLink setPreferredFramesPerSecond:1];
+//    self.displayLink.frameInterval = 60;
+//    [self.displayLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSRunLoopCommonModes];
+//    self.displayLink.paused = YES;
 }
 - (void)updateStep{
     [self.stepperView nextStep];
@@ -247,6 +254,7 @@ static double preRadian;
     [keyboardView show];
     keyboardView.callback = ^(NSString * speedStr){
         self.labSpeed.text = speedStr;
+//        self.displayLink.frameInterval = 3600/([speedStr integerValue]);
         speed = [speedStr intValue];
         [self kResetTimer];
         [view removeFromSuperview];
@@ -367,7 +375,7 @@ static double preRadian;
 - (IBAction)btnActionPat:(id)sender {
     if (flagIsPlaying) {
         flagIsPlaying = !flagIsPlaying;
-
+//        self.displayLink.paused = YES;
         [self.timer invalidate];
         NSString * imageNamePlay = @"playRed";
         [self.btnPlay setBackgroundImage:[UIImage imageNamed:imageNamePlay] forState:UIControlStateNormal];
@@ -390,10 +398,10 @@ static double preRadian;
         }
         speed = abc;
         self.labSpeed.text = [NSString stringWithFormat:@"%d",abc];
-
-        flagIsPlaying = YES;
+//        self.displayLink.frameInterval = 3600/abc;
         [self kResetTimer];
         
+        flagIsPlaying = YES;
         NSString * imageNamePause = @"pauseRed";
         [self.btnPlay setBackgroundImage:[UIImage imageNamed:imageNamePause] forState:UIControlStateNormal];
     }
@@ -447,10 +455,10 @@ static double preRadian;
     NSString * imageNamePlay = @"playRed";
     NSString * imageNamePause = @"pauseRed";
     if (flagIsPlaying) {//当前为播放状态
-        [self kResetTimer];
+        self.displayLink.paused = NO;
         [self.btnPlay setBackgroundImage:[UIImage imageNamed:imageNamePause] forState:UIControlStateNormal];
     }else{
-        [self kInvalidate];
+        self.displayLink.paused = YES;
         [self.btnPlay setBackgroundImage:[UIImage imageNamed:imageNamePlay] forState:UIControlStateNormal];
     }
 }
@@ -504,7 +512,9 @@ static double preRadian;
 }
 
 - (IBAction)quit:(id)sender {
-    [self kInvalidate];
+//    [self playStepWithTone:toneProperty001];
+    [self.displayLink invalidate];
+    self.displayLink = nil;
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -533,6 +543,8 @@ static double preRadian;
     if(mySpeed<30){speed=30;return;}
     _labSpeed.text = [NSString stringWithFormat:@"%d",speed];
     [self kResetTimer];
+//    self.displayLink.frameInterval = 3600/speed;
+//    self.displayLink.preferredFramesPerSecond = 3600/speed;
 }
 - (double)getAngleFromPoint:(CGPoint)fromPoint toPoint:(CGPoint)toPoint{
     //两点的x、y值
@@ -560,12 +572,7 @@ static double preRadian;
         self.timer  = timer;
         [timer fire];
     }
-}
-- (void)kInvalidate{
-    if (self.timer) {
-        [self.timer invalidate];
-        self.timer  = nil;
-    }
+
 }
 
 @end

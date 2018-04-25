@@ -5,32 +5,6 @@
 //  Created by 丞相@音乐 on 2017/2/9.
 //  Copyright © 2017年 lin. All rights reserved.
 //
-
-
-#import "ZStepperViewController.h"
-#import "ZNewSteperView.h"
-#import "ZChooseSignatureView.h"
-#import <AVFoundation/AVFoundation.h>
-#import "ZCustomNumberKeyboardView.h"
-
-
-
-#define RGBAColor(r, g, b, a) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:(a)]
-#define RGBColor(r, g, b)     [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:1.0]
-// 全局导航 item color
-#define iphone5               ((MLScreenWidth == 320.000000 && MLScreenHeight == 568.000000) || (MLScreenWidth == 568.000000 && MLScreenHeight == 320.000000))
-#define MLScreenWidth         [UIScreen mainScreen].bounds.size.width
-// 当前屏幕高度
-#define MLScreenHeight        [UIScreen mainScreen].bounds.size.height
-#define MAX_RADIAN (M_PI*88/5)
-#define MIN_RADIAN (-M_PI*6/5)
-
-#define MLGlobalNavItemColor RGBColor(155,155,155)
-@interface ZStepperViewController ()<AVAudioPlayerDelegate,UIPickerViewDelegate,UIPickerViewDataSource>
-typedef NS_ENUM(NSInteger,Test) {
-    testa = 0,
-    Testb
-};
 typedef NS_ENUM(NSInteger,signatureType) {
     signatureType24 = 0,
     signatureType34 ,
@@ -53,7 +27,20 @@ typedef NS_ENUM(NSInteger , toneProperty) {
     tonePropertyWrong       ,   //错误
     tonePropertyRotation        //旋转音效   11
 };
+#import "ZStepperViewController.h"
+#import "ZStepperView.h"
+#import "ZNewSteperView.h"
+#import "ZChooseSignatureView.h"
+#import <AVFoundation/AVFoundation.h>
+#import "ZCustomNumberKeyboardView.h"
+#define MAX_RADIAN (M_PI*88/5)
+#define MIN_RADIAN (-M_PI*6/5)
+#define ZSTEPPERSifnature @"zStepperSifnature"
+#define ZSTEPPERSpeed @"zStepperSpeed"
+@interface ZStepperViewController ()<AVAudioPlayerDelegate,UIPickerViewDelegate,UIPickerViewDataSource,UIGestureRecognizerDelegate>
+
 @property (weak, nonatomic) IBOutlet UIView *topView;
+@property (weak, nonatomic) IBOutlet UIView *midView;
 @property (weak, nonatomic) IBOutlet UIButton *btnSignNumber;
 
 @property (weak, nonatomic) IBOutlet UILabel *labSpeed;
@@ -72,20 +59,23 @@ typedef NS_ENUM(NSInteger , toneProperty) {
 
 @property (assign ,nonatomic) signatureType signType;
 @property (assign ,nonatomic) toneProperty tonePro;
-
+//@property (weak ,nonatomic) ZStepperView * stepperView;
 @property (weak ,nonatomic) ZNewSteperView * stepperView;
-
-@property (strong, nonatomic) NSTimer *timer;
+@property (strong, nonatomic) CADisplayLink *displayLink;
+@property(strong, nonatomic)NSTimer * timer;
 @property (nonatomic, strong) AVAudioPlayer *audioPlayer;
+@property (nonatomic, strong) AVAudioPlayer *zaudioPlayer;
 
 @property (nonatomic ,weak) UIView * clickSpeedView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *layoutAddLeft;
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *layoutMinusRight;
+@property (nonatomic,assign)BOOL isFirstPaly;
 
 @end
-
 static double totalRadian;
+static double zflagtotalRadian;
+
 static double preRadian;
 
 @implementation ZStepperViewController{
@@ -102,16 +92,21 @@ static double preRadian;
     [super viewWillAppear:YES];
     self.navigationController.navigationBar.hidden = YES;
     [self.tabBarController.tabBar setHidden:YES];
- //    self.btnImageHand
+    [MobClick beginLogPageView:@"节拍器"];
+//    self.btnImageHand
     if (iphone5) {
         self.layoutAddLeft.constant = 0;
         self.layoutMinusRight.constant = 0;
     }
+ 
 }
+
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:YES];
     self.navigationController.navigationBar.hidden = NO;
-    [self kInvalidate];
+    [MobClick endLogPageView:@"节拍器"];
+    [self.displayLink invalidate];
+    self.displayLink = nil;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -133,16 +128,33 @@ static double preRadian;
     self.stepperView = stepperView;
 }
 - (void)setBaseProperty{
+    [self setupAudioPlayer];
     [self.tabBarController.tabBar setHidden:YES];
-    self.view.backgroundColor = RGBColor(239, 239, 244);
-    speed=60;
+    self.view.backgroundColor = MLGlobalBackgroundColor;
+    NSString * speedStr = [[NSUserDefaults standardUserDefaults] valueForKey:ZSTEPPERSpeed];
+    if (speedStr.length>0) {
+        speed = [speedStr intValue];
+    }else{
+        speed=60;
+    }
+    self.labSpeed.text = [NSString stringWithFormat:@"%d",speed];
     flagIsPlaying=NO;
-    totalRadian = 0;
+//    totalRadian = 0;
+    totalRadian=(speed - 60)*M_PI*2/50;
     preRadian=0;
     _signType = signatureType44;
     flagPatNumber = 0;
-    flagSignUp = 4;
-    flagSignDown = 4;
+    NSString * sifnatureStr =[[NSUserDefaults standardUserDefaults] valueForKey:ZSTEPPERSifnature];
+    if (sifnatureStr.length>0) {
+       NSArray * arr = [sifnatureStr componentsSeparatedByString:@"/"];
+        self.labSignature.text = sifnatureStr;
+        flagSignUp = [[arr firstObject] integerValue];
+        flagSignDown = [[arr lastObject] integerValue];
+    }else{
+        self.labSignature.text = @"4/4";
+        flagSignUp = 4;
+        flagSignDown = 4;
+    }
     _tonePro = tonePropertyWeak;
     //ui
     _btnBeatSet.layer.cornerRadius = 15;
@@ -158,8 +170,21 @@ static double preRadian;
     [_btnImageWheel setBackgroundImage:[UIImage imageNamed:@"wheel"] forState:UIControlStateHighlighted];
     [_btnImageHand setBackgroundImage:[UIImage imageNamed:@"hand_out"] forState:UIControlStateNormal];
     [_btnImageHand setBackgroundImage:[UIImage imageNamed:@"hand_in"] forState:UIControlStateHighlighted];
+    //CADisplaylink
+    self.displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(updateStep)]; 
+
+//    self.displayLink.frameInterval = 60;
+    [self KDealWithFrameinterval:60];
+    [self.displayLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSRunLoopCommonModes];
+    self.displayLink.paused = YES;
+    
+    //nstime
+    NSTimer * timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(updateStep) userInfo:nil repeats:YES];
+    [timer setFireDate:[NSDate distantFuture]];
+    
 }
 - (void)updateStep{
+    NSLog(@"---%@---",@"a");
     [self.stepperView nextStep];
     if (self.stepperView.step == 1) {
         [self playStepWithTone:_tonePro-1];
@@ -217,8 +242,16 @@ static double preRadian;
     [player prepareToPlay];
     [player play];
     player.delegate = self;
-    self.audioPlayer = player; 
+    self.audioPlayer = player;
 }
+- (void)setupAudioPlayer{
+    NSURL * url = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"节拍器旋钮音效" ofType:@"wav"]];
+    AVAudioPlayer * player =  [[AVAudioPlayer alloc]initWithContentsOfURL:url error:nil];
+    player.numberOfLoops = 0;//播放次数
+    [player prepareToPlay];
+    self.zaudioPlayer = player;
+}
+
 //- audioPlayerDidFinishPlaying
 - (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag{
     [player stop];
@@ -226,6 +259,7 @@ static double preRadian;
 }
 //top
 - (IBAction)btnActionSpeed:(id)sender {
+    [self priRestorePatNumber];
     [self playStepWithTone:toneProperty001];
     UIView * view = [[UIView alloc]initWithFrame:self.view.bounds];
     self.clickSpeedView = view;
@@ -247,9 +281,14 @@ static double preRadian;
     [keyboardView show];
     keyboardView.callback = ^(NSString * speedStr){
         self.labSpeed.text = speedStr;
+//        self.displayLink.frameInterval = 3600/([speedStr integerValue]);
+        NSInteger integer = 3600/([speedStr integerValue]);
+        
         speed = [speedStr intValue];
-        [self kResetTimer];
+        [self KDealWithFrameinterval:integer];
         [view removeFromSuperview];
+        
+       [[NSUserDefaults standardUserDefaults] setValue:speedStr forKey:ZSTEPPERSpeed];
     };
     keyboardView.callbackForWrong = ^(NSInteger integer){
         if (integer == 0) {
@@ -270,6 +309,7 @@ static double preRadian;
     [self.clickSpeedView removeFromSuperview];
 }
 - (IBAction)btnActionSignature:(id)sender {
+    [self priRestorePatNumber];
     [self playStepWithTone:toneProperty001];
     UIView * view = [[UIView alloc]initWithFrame:self.view.bounds];
     self.clickSpeedView = view;
@@ -312,6 +352,7 @@ static double preRadian;
 }
 - (void)btnClickForSifnature:(UIButton *)btn{
     NSString * str = btn.titleLabel.text;
+    [[NSUserDefaults standardUserDefaults] setValue:str forKey:ZSTEPPERSifnature];
     self.labSignature.text = str;
     NSArray * arr = [str componentsSeparatedByString:@"/"];
     flagSignUp = [[arr firstObject] integerValue];
@@ -340,25 +381,40 @@ static double preRadian;
 }
 - (IBAction)btnActionDrayWheel:(UIButton *)sender forEvent:(UIEvent *)event {
     CGPoint point = [[[event allTouches] anyObject] locationInView:self.view];
+
+//    NSLog(@"--point--%@",NSStringFromCGPoint(point));
     CGPoint center = CGPointMake(sender.center.x, sender.center.y+CGRectGetMinY([sender superview].frame)) ;
     double angle= [self getAngleFromPoint:center toPoint:point];
 //    YYEKTLog(@"之前弧度%f，新弧度%f，弧度差%f,总弧度%f",preRadian,angle,angle-preRadian,totalRadian);
     if (preRadian==0) {
     } else {
         //计算 弧度
-        if (center.x<point.x) {
-            totalRadian -=angle-preRadian;
+        if (center.x <= point.x) {
+            totalRadian -= angle-preRadian;
         } else {
-            totalRadian +=angle-preRadian;
+            totalRadian += angle-preRadian;
         }
         //旋转
-        self.btnImageWheel.transform = CGAffineTransformMakeRotation(totalRadian);
+        //+- 与wheel 有关系
+//        self.btnImageWheel.transform = CGAffineTransformMakeRotation(totalRadian);
+          //+- 与wheel 无关系
+        if (!zflagtotalRadian) {
+            zflagtotalRadian = totalRadian;
+        }
+        self.btnImageWheel.transform = CGAffineTransformRotate(self.btnImageWheel.transform, (totalRadian-zflagtotalRadian));
+        zflagtotalRadian = totalRadian;
+        
+        
         //展示 速度
         speed = 60 + totalRadian/M_PI*50/2;
         [self setSpeed:speed];
         
         if (speed != flagSpeed) {
-            [self playStepWithTone:tonePropertyRotation];
+//            [self playStepWithTone:tonePropertyRotation]; 
+                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                    [self.zaudioPlayer play];
+                });
+            
         }
         flagSpeed = speed;
     }
@@ -367,12 +423,11 @@ static double preRadian;
 - (IBAction)btnActionPat:(id)sender {
     if (flagIsPlaying) {
         flagIsPlaying = !flagIsPlaying;
-
-        [self.timer invalidate];
+        self.displayLink.paused = YES;
         NSString * imageNamePlay = @"playRed";
         [self.btnPlay setBackgroundImage:[UIImage imageNamed:imageNamePlay] forState:UIControlStateNormal];
     }
-    [self playStepWithTone:_tonePro];
+ 
     flagPatNumber ++;
     //timeDif
     NSTimeInterval timeInterval = [NSDate timeIntervalSinceReferenceDate];
@@ -390,20 +445,17 @@ static double preRadian;
         }
         speed = abc;
         self.labSpeed.text = [NSString stringWithFormat:@"%d",abc];
-
-        flagIsPlaying = YES;
-        [self kResetTimer];
-        
-        NSString * imageNamePause = @"pauseRed";
-        [self.btnPlay setBackgroundImage:[UIImage imageNamed:imageNamePause] forState:UIControlStateNormal];
+//        self.displayLink.frameInterval = 3600/abc;
+        NSInteger integer  = 3600/abc;
+        [self KDealWithFrameinterval:integer];
     }
     
     //UI
     if (flagPatNumber==4) {
         flagPatNumber = 0;
+        [self btnActionPlay:nil];
     }
     [self showImageWithTotal:flagPatNumber];
-    
     //func
     
 }
@@ -432,29 +484,48 @@ static double preRadian;
     [self playStepWithTone:toneProperty001];
     [self setSpeed:--speed];
     totalRadian=(speed - 60)*M_PI*2/50;
-    self.btnImageWheel.transform = CGAffineTransformMakeRotation(totalRadian);
+//    self.btnImageWheel.transform = CGAffineTransformMakeRotation(totalRadian);
 }
 - (IBAction)btnActionIncrease:(id)sender {
     [self playStepWithTone:toneProperty001];
     [self setSpeed:++speed];
     totalRadian=(speed - 60)*M_PI*2/50;
-    self.btnImageWheel.transform = CGAffineTransformMakeRotation(totalRadian);
+//    self.btnImageWheel.transform = CGAffineTransformMakeRotation(totalRadian);
 }
 //down
 - (IBAction)btnActionPlay:(id)sender {
+    [self priRestorePatNumber];
+    
+    if (!self.isFirstPaly) {
+        self.isFirstPaly = YES;
+        NSString * speedStr = [[NSUserDefaults standardUserDefaults] valueForKey:ZSTEPPERSpeed];
+        [self playStepWithTone:toneProperty001];
+        [self setSpeed:[speedStr intValue]];
+    }
+    
+    
+    
     flagIsPlaying = !flagIsPlaying;
-    [self kResetTimer];
     NSString * imageNamePlay = @"playRed";
     NSString * imageNamePause = @"pauseRed";
     if (flagIsPlaying) {//当前为播放状态
-        [self kResetTimer];
+        if (speed >= 30 && speed<60) {
+            [self kResetTimer];
+        }else{
+            self.displayLink.paused = NO;
+        }
         [self.btnPlay setBackgroundImage:[UIImage imageNamed:imageNamePause] forState:UIControlStateNormal];
     }else{
-        [self kInvalidate];
+        if (speed >= 30 && speed<60) {
+            [self kinvalidateTimer];
+        }else{
+            self.displayLink.paused = YES;
+        }
         [self.btnPlay setBackgroundImage:[UIImage imageNamed:imageNamePlay] forState:UIControlStateNormal];
     }
 }
 - (IBAction)btnActionBeatSet:(UIButton *)sender {
+    [self priRestorePatNumber];
     [self playStepWithTone:toneProperty001];
     UIView * view = [[UIView alloc]initWithFrame:self.view.bounds];
     self.clickSpeedView = view;
@@ -467,6 +538,9 @@ static double preRadian;
     shadowView.backgroundColor = RGBAColor(0, 0, 0, 0.2);
     
     ZChooseSignatureView * chooseView = [[[NSBundle mainBundle]loadNibNamed:@"ZChooseSignatureView" owner:self options:nil]firstObject];
+    chooseView.callbackForVideo = ^(){
+        [self playStepWithTone:toneProperty001];
+    };
     chooseView.callback = ^(NSInteger rowLeft,NSInteger rowRight){
         [self playStepWithTone:toneProperty001];
         if (rowLeft==0 && rowRight==0) {
@@ -475,7 +549,9 @@ static double preRadian;
             flagSignUp = rowLeft+1;
             flagSignDown =rowRight; 
             [self setupStepperView];
-            self.labSignature.text = [NSString stringWithFormat:@"%ld/%ld",flagSignUp,flagSignDown];
+            NSString * str = [NSString stringWithFormat:@"%ld/%ld",(long)flagSignUp,(long)flagSignDown];
+            self.labSignature.text = str;
+             [[NSUserDefaults standardUserDefaults] setValue:str forKey:ZSTEPPERSifnature];
         }
         [view removeFromSuperview];
     };
@@ -485,6 +561,7 @@ static double preRadian;
     [view addSubview:chooseView]; 
 }
 - (IBAction)btnActioChangeMusic:(id)sender {
+    [self priRestorePatNumber];
     _tonePro += 2;
     if (_tonePro>7) {
         _tonePro = 0;
@@ -504,9 +581,19 @@ static double preRadian;
 }
 
 - (IBAction)quit:(id)sender {
-    [self kInvalidate];
+//    [self playStepWithTone:toneProperty001];
+    [self.displayLink invalidate];
+    self.displayLink = nil;
+    [self kinvalidateTimer];
     [self.navigationController popViewControllerAnimated:YES];
 }
+-(void)dealloc{
+    
+    [self.displayLink invalidate];
+    self.displayLink = nil;
+    [self kinvalidateTimer];
+}
+
 
 #pragma mark- UIPickerViewDataSource
 // returns the number of 'columns' to display.
@@ -528,11 +615,20 @@ static double preRadian;
 }
 #pragma mark- --------------------
 //展示速度
+ 
 - (void)setSpeed:(int)mySpeed{
-    if(mySpeed>500){speed=500;return;}
-    if(mySpeed<30){speed=30;return;}
+     if (mySpeed>500) {
+         speed = 500;
+    } else if(mySpeed<30) {
+        speed = 30;
+    }
     _labSpeed.text = [NSString stringWithFormat:@"%d",speed];
-    [self kResetTimer];
+//    self.displayLink.frameInterval = 3600/speed;
+    NSInteger integer = 3600 / speed;
+    [self KDealWithFrameinterval:integer];
+     [[NSUserDefaults standardUserDefaults] setValue:[NSString stringWithFormat:@"%d",speed] forKey:ZSTEPPERSpeed];
+   
+//    self.displayLink.preferredFramesPerSecond = 3600/speed;
 }
 - (double)getAngleFromPoint:(CGPoint)fromPoint toPoint:(CGPoint)toPoint{
     //两点的x、y值
@@ -544,9 +640,39 @@ static double preRadian;
     double sin =(double)y/(double)hypotenuse;
     //求弧度
     double radian = (double)acos(sin);
+    
+//    double radian = atan2(x, y);
+//    NSLog(@"--radian-- %f",radian);
     return radian;
 }
-
+- (void)priRestorePatNumber{
+    //还原 三个
+    if (flagPatNumber != 0) {
+        [self showImageWithTotal:0];
+    }
+      flagPatNumber = 0;
+}
+- (void)KDealWithFrameinterval:(NSInteger )integer{
+    
+    if (integer > 60) {
+        self.displayLink.paused = YES;
+        [self kResetTimer];
+    }else{
+        [self kinvalidateTimer];
+        if (flagIsPlaying) {
+            self.displayLink.paused = NO;
+        } else{
+            self.displayLink.paused = YES;
+        }
+    self.displayLink.frameInterval = integer;
+    }
+}
+- (void)kinvalidateTimer{
+    if (self.timer) {
+        [self.timer invalidate];
+        self.timer  = nil;
+    }
+}
 - (void)kResetTimer{
     if (flagIsPlaying) {
         if (self.timer) {
@@ -560,12 +686,7 @@ static double preRadian;
         self.timer  = timer;
         [timer fire];
     }
-}
-- (void)kInvalidate{
-    if (self.timer) {
-        [self.timer invalidate];
-        self.timer  = nil;
-    }
+    
 }
 
 @end
